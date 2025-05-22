@@ -1,2 +1,4 @@
 # UC-Exe1
-Solutions to the first five requests.
+The .txt file contains the solutions to the first 5 requests.
+
+![PLOTS](images/plots.png)
