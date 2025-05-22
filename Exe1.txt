@@ -1,1 +1,73 @@
+1) Create a ros2 workspace and place the exercise files in it.
+
+Commands I used:    (in terminal 1)
+mkdir ex1_ws
+cd ex1_ws
+unzip ~/Scaricati/EX1.zip
+mv EX1 src
+colcon build
+cd
+
+Commands I used:    (in terminal 2)
+cd ex1_ws
+source install/local_setup.sh    <---- this line MUST be written after every colcon build
+cd
+
+---------------------------------------------------------------------------------------------------------------------
+
+2) Determine how many topics are in the bag.
+
+Command I used:
+echo -n "Number of topics in the bag: "; ros2 bag info ex1/src/rosbag2_2024_11_22-00_32_31 | grep "Topic:" | wc -l
+
+Terminal output:
+Number of topics in the bag: 5
+
+---------------------------------------------------------------------------------------------------------------------
+
+3) Determine the Hz of the topic image.
+
+Commands I used:
+ros2 bag play ex1/src/rosbag2_2024_11_22-00_32_31 --loop       (in terminal 1)
+ros2 topic hz /zed2i/zed_node/left_gray/image_rect_gray        (in terminal 2)
+
+Due to the loop condition, we can see a lot of values in the terminal. The avg value is approx 29 Hz.
+
+---------------------------------------------------------------------------------------------------------------------
+
+4) Determine the Hz of the topic system.
+
+Commands I used:
+ros2 bag play ex1/src/rosbag2_2024_11_22-00_32_31 --loop       (in terminal 1)   [from previous request]
+ros2 topic hz /system_info                                     (in terminal 2)
+
+Same conditions of the previous request. The avg value is approx 1.8 Hz.
+
+---------------------------------------------------------------------------------------------------------------------
+
+5) Determine what does the topic system return .
+
+Command I used:
+ros2 bag play ex1/src/rosbag2_2024_11_22-00_32_31 --loop       (in terminal 1)   [from previous requests]
+ros2 topic info /system_info                                   (in terminal 2)
+
+Terminal (2) output:
+Type: sysmotinor_interfaces/msg/Sysmon
+
+
+The output is a message of type sysmotinor_interfaces/msg/Sysmon.
+
+In order to determine the msg structure (and fields), I used the following command:
+ros2 interface show sysmotinor_interfaces/msg/Sysmon          (in terminal 1)
+
+Terminal (2) output:
+float64 cpu_usage
+float64 cpu_temp
+float64 ram_usage
+float64 gpu_usage
+float64 gpu_temp
+float64 gpuram_usage
+
+
+
 
