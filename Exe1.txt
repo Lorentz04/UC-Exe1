@@ -58,7 +58,7 @@ Type: sysmotinor_interfaces/msg/Sysmon
 The output is a message of type sysmotinor_interfaces/msg/Sysmon.
 
 In order to determine the msg structure (and fields), I used the following command:
-ros2 interface show sysmotinor_interfaces/msg/Sysmon          (in terminal 1)
+ros2 interface show sysmotinor_interfaces/msg/Sysmon          (in terminal 2)
 
 Terminal (2) output:
 float64 cpu_usage
